@@ -17,7 +17,7 @@ services:
       retries: 10
 
   moodle:
-    image: bitnamilegacy/moodle:4
+    image: bitnamilegacy/moodle:4.5
     container_name: moodle_app
     restart: unless-stopped
     ports:

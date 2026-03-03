@@ -5,7 +5,7 @@ Instancia local de Moodle para desarrollo y pruebas del proyecto MIRA.
 ## Levantar
 
 ```bash
-cd moodle-local
+cd moodle
 docker compose up -d
 ```
 

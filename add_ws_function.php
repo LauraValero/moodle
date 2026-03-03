@@ -1,0 +1,30 @@
+<?php
+define('CLI_SCRIPT', true);
+require('/bitnami/moodle/config.php');
+
+$functions_to_add = [
+    'core_enrol_get_users_courses',
+];
+
+$service = $DB->get_record('external_services', ['shortname' => 'mira_setup']);
+if (!$service) {
+    echo "ERROR: servicio 'mira_setup' no encontrado\n";
+    exit(1);
+}
+
+foreach ($functions_to_add as $fname) {
+    if (!$DB->record_exists('external_services_functions', [
+        'externalserviceid' => $service->id,
+        'functionname' => $fname
+    ])) {
+        $DB->insert_record('external_services_functions', [
+            'externalserviceid' => $service->id,
+            'functionname' => $fname
+        ]);
+        echo "Agregada: $fname\n";
+    } else {
+        echo "Ya existia: $fname\n";
+    }
+}
+
+echo "LISTO\n";

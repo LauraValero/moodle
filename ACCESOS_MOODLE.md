@@ -13,15 +13,15 @@ http://localhost:8080
 | Rol | Nombre completo | Usuario | Contraseña | Email |
 |-----|----------------|---------|-----------|-------|
 | Administrador | — | `admin` | `Admin1234!` | admin@local.dev |
-| Profesor | Carlos Martínez | `profesor_demo` | `Profesor1234!` | profesor@demo.local |
-| Estudiante | Laura Valero | `estudiante_demo` | `Estudiante1234!` | estudiante@demo.local |
+| Profesor | Carlos Martínez | `profesor` | `Profesor1234!` | profesor@local.dev |
+| Estudiante | Laura Valero | `estudiante` | `Estudiante1234!` | estudiante@local.dev |
 
 ---
 
 ## Token de acceso a la API REST
 
 ```
-3175d43ec32ad596dc0f3aa5fe35b567
+9e42c1ea95e578bd5aa43af8df6ed8a6
 ```
 
 ### Cómo encontrar o crear el token en Moodle
@@ -70,21 +70,51 @@ docker exec moodle_app bash -c "php /tmp/setup_ws.php"
 
 ---
 
-## Funciones habilitadas en el servicio MIRA Setup
+## Servicios web habilitados
+
+Servicio: **MIRA Setup** (shortname: `mira_setup`) — protocolo REST
+
+### Sitio
 
 | Función | Descripción |
 |---------|-------------|
 | `core_webservice_get_site_info` | Información del sitio y verificación de conexión |
+
+### Usuarios
+
+| Función | Descripción |
+|---------|-------------|
 | `core_user_create_users` | Crear usuarios |
-| `core_user_get_users_by_field` | Buscar usuarios |
+| `core_user_get_users_by_field` | Buscar usuario por campo (ej: email) |
+
+### Cursos y matriculación
+
+| Función | Descripción |
+|---------|-------------|
 | `core_course_create_courses` | Crear cursos |
-| `core_course_get_courses` | Listar cursos |
-| `core_course_get_contents` | Obtener contenido de un curso |
+| `core_course_get_courses` | Listar cursos del sitio |
+| `core_course_get_contents` | Obtener secciones y módulos de un curso |
+| `core_enrol_get_users_courses` | Listar cursos en los que está matriculado un usuario |
+| `core_enrol_get_enrolled_users` | Listar usuarios matriculados en un curso |
 | `enrol_manual_enrol_users` | Matricular usuarios con rol |
-| `core_enrol_get_enrolled_users` | Listar usuarios matriculados |
+
+### Actividades
+
+| Función | Descripción |
+|---------|-------------|
+| `mod_assign_get_assignments` | Detalle de tareas (fechas, calificación, instrucciones) |
+| `mod_quiz_get_quizzes_by_courses` | Detalle de cuestionarios (tiempos, intentos, calificación) |
+| `mod_page_get_pages_by_courses` | Contenido de páginas |
+
+### Foros
+
+| Función | Descripción |
+|---------|-------------|
 | `mod_forum_get_forums_by_courses` | Listar foros de un curso |
 | `mod_forum_get_forum_discussions` | Listar debates de un foro |
-| `mod_forum_add_discussion` | Publicar debate en foro |
+| `mod_forum_get_discussion_posts` | Obtener posts de un debate |
+| `mod_forum_get_discussion_posts_by_userid` | Obtener posts de un usuario en foros |
+| `mod_forum_add_discussion` | Publicar un nuevo debate |
 | `mod_forum_add_discussion_post` | Responder en un debate |
 
 ---
@@ -118,14 +148,14 @@ docker compose down -v
 ```bash
 # Ejemplo: verificar conexión
 curl "http://localhost:8080/webservice/rest/server.php" \
-  --data "wstoken=3175d43ec32ad596dc0f3aa5fe35b567&wsfunction=core_webservice_get_site_info&moodlewsrestformat=json"
+  --data "wstoken=9e42c1ea95e578bd5aa43af8df6ed8a6&wsfunction=core_webservice_get_site_info&moodlewsrestformat=json"
 ```
 
 ```python
 # Ejemplo en Python
 import requests
 
-TOKEN = "3175d43ec32ad596dc0f3aa5fe35b567"
+TOKEN = "9e42c1ea95e578bd5aa43af8df6ed8a6"
 MOODLE_URL = "http://localhost:8080"
 
 r = requests.post(f"{MOODLE_URL}/webservice/rest/server.php", data={

@@ -16,7 +16,7 @@ import requests
 import sys
 
 MOODLE_URL = "http://localhost:8080"
-TOKEN = "3175d43ec32ad596dc0f3aa5fe35b567"
+TOKEN = "9e42c1ea95e578bd5aa43af8df6ed8a6"
 
 # ---------------------------------------------------------------------------
 # Cliente REST mínimo
@@ -61,21 +61,21 @@ print("\n▶ Creando usuarios...")
 
 users_data = [
     {
-        "username": "profesor_demo",
+        "username": "profesor",
         "password": "Profesor1234!",
         "firstname": "Carlos",
         "lastname": "Martínez",
-        "email": "profesor@demo.local",
+        "email": "profesor@local.dev",
         "auth": "manual",
         "lang": "es",
         "description": "Docente del curso de Formulación de Proyectos.",
     },
     {
-        "username": "estudiante_demo",
+        "username": "estudiante",
         "password": "Estudiante1234!",
         "firstname": "Laura",
         "lastname": "González",
-        "email": "estudiante@demo.local",
+        "email": "estudiante@local.dev",
         "auth": "manual",
         "lang": "es",
         "description": "Estudiante matriculada en el curso de Formulación de Proyectos.",
@@ -88,8 +88,8 @@ for u in created:
     user_ids[u["username"]] = u["id"]
     print(f"  Usuario creado: {u['username']} (id={u['id']})")
 
-profesor_id = user_ids["profesor_demo"]
-estudiante_id = user_ids["estudiante_demo"]
+profesor_id = user_ids["profesor"]
+estudiante_id = user_ids["estudiante"]
 
 
 # ---------------------------------------------------------------------------
@@ -249,8 +249,8 @@ print("SETUP COMPLETADO")
 print("="*60)
 print(f"  URL Moodle:      {MOODLE_URL}")
 print(f"  Curso:           Formulación de Proyectos (id={course_id})")
-print(f"  Profesor:        profesor@demo.local  / Profesor1234!")
-print(f"  Estudiante:      estudiante@demo.local / Estudiante1234!")
+print(f"  Profesor:        profesor@local.dev  / Profesor1234!")
+print(f"  Estudiante:      estudiante@local.dev / Estudiante1234!")
 print(f"  Admin:           admin / Admin1234!")
 print(f"  Token API:       {TOKEN}")
 print("="*60)

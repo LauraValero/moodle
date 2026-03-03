@@ -5,7 +5,7 @@
 - **Docker Desktop** (ya instalado en esta máquina)
 - **WSL2** (ya configurado — se instaló automáticamente)
 
----s
+---
 
 ## Levantar Moodle (uso normal)
 
@@ -42,7 +42,7 @@ Deberías ver algo así:
 
 ```
 NAME         IMAGE                    STATUS
-moodle_app   bitnamilegacy/moodle:4   Up
+moodle_app   bitnamilegacy/moodle:4.5   Up
 moodle_db    mariadb:10.11            Up (healthy)
 ```
 
@@ -67,6 +67,18 @@ docker compose down
 ```bash
 # Detener y BORRAR TODOS LOS DATOS (vuelve a cero)
 docker compose down -v
+```
+
+---
+
+## Aplicar una nueva configuración (actualizar imagen o docker-compose.yml)
+
+Cuando se cambia algo en `docker-compose.yml` (por ejemplo la versión de Moodle), ejecutar:
+
+```bash
+docker compose down
+docker compose pull
+docker compose up -d
 ```
 
 ---
@@ -157,31 +169,19 @@ docker compose down -v
 docker compose up -d
 ```
 
-Esto borra usuarios, cursos y configuración. Para volver a poblar los datos de prueba:
+Esto borra usuarios, cursos y configuración. Para volver a poblar los datos de prueba ejecutar estos dos comandos en orden:
 
 ```bash
-# Recrear webservices y token
+# 1. Recrear webservices y token
 docker cp setup_ws.php moodle_app:/tmp/setup_ws.php
 docker exec moodle_app bash -c "php /tmp/setup_ws.php"
 
-# Recrear usuarios, curso y foro
-python seed_moodle.py
-
-# Recrear actividades (glosario, tareas, quiz, páginas)
-docker cp create_forum.php moodle_app:/tmp/create_forum.php
-docker exec moodle_app bash -c "php /tmp/create_forum.php"
-
-docker cp create_posts.php moodle_app:/tmp/create_posts.php
-docker exec moodle_app bash -c "php /tmp/create_posts.php"
-
-docker cp add_activities.php moodle_app:/tmp/add_activities.php
-docker exec moodle_app bash -c "php /tmp/add_activities.php"
-
-docker cp fix_quiz.php moodle_app:/tmp/fix_quiz.php
-docker exec moodle_app bash -c "php /tmp/fix_quiz.php"
+# 2. Recrear todo lo demás: usuarios, curso, secciones, actividades y posts
+docker cp seed_all.php moodle_app:/tmp/seed_all.php
+docker exec moodle_app bash -c "php /tmp/seed_all.php"
 ```
 
-> El token cambia cada vez que se ejecuta `setup_ws.php`. Actualizar el valor en `seed_moodle.py` y en `mira/.env.test`.
+> El token cambia cada vez que se ejecuta `setup_ws.php`. Copiarlo y actualizarlo en `mira/.env.test`.
 
 ---
 
@@ -189,7 +189,7 @@ docker exec moodle_app bash -c "php /tmp/fix_quiz.php"
 
 ```
 1. Abrir Docker Desktop → esperar a que cargue
-2. cd moodle-local
+2. cd moodle
 3. docker compose up -d
 4. Abrir http://localhost:8080
 ```
