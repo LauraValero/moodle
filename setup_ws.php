@@ -27,18 +27,36 @@ if (!$service) {
 
 // Funciones a agregar
 $functions = array(
+    // Site
+    'core_webservice_get_site_info',
+    // Users
     'core_user_create_users',
-    'core_course_create_courses',
-    'enrol_manual_enrol_users',
-    'core_course_get_contents',
-    'mod_forum_add_discussion',
-    'mod_forum_add_discussion_post',
-    'core_enrol_get_enrolled_users',
     'core_user_get_users_by_field',
+    // Courses & enrolment
+    'core_course_create_courses',
     'core_course_get_courses',
+    'core_course_get_contents',
+    'core_enrol_get_users_courses',
+    'core_enrol_get_enrolled_users',
+    'enrol_manual_enrol_users',
+    // Assignments
+    'mod_assign_get_assignments',
+    // Quiz
+    'mod_quiz_get_quizzes_by_courses',  // listar quizzes de un curso
+    'mod_quiz_start_attempt',           // iniciar preview (get_quiz_questions)
+    'mod_quiz_get_attempt_data',        // leer preguntas de un intento activo
+    'mod_quiz_process_attempt',         // cerrar preview
+    'mod_quiz_get_user_attempts',       // listar intentos de un usuario (get_quiz_attempts)
+    'mod_quiz_get_attempt_review',      // revisar intento finalizado con respuestas correctas
+    // Pages
+    'mod_page_get_pages_by_courses',
+    // Forums
     'mod_forum_get_forums_by_courses',
     'mod_forum_get_forum_discussions',
-    'core_webservice_get_site_info',
+    'mod_forum_get_discussion_posts',
+    'mod_forum_get_discussion_posts_by_userid',
+    'mod_forum_add_discussion',
+    'mod_forum_add_discussion_post',
 );
 
 foreach ($functions as $fname) {

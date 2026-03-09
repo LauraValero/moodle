@@ -104,6 +104,11 @@ Servicio: **MIRA Setup** (shortname: `mira_setup`) — protocolo REST
 |---------|-------------|
 | `mod_assign_get_assignments` | Detalle de tareas (fechas, calificación, instrucciones) |
 | `mod_quiz_get_quizzes_by_courses` | Detalle de cuestionarios (tiempos, intentos, calificación) |
+| `mod_quiz_start_attempt` | Iniciar intento/preview de quiz |
+| `mod_quiz_get_attempt_data` | Leer preguntas de un intento activo |
+| `mod_quiz_process_attempt` | Finalizar/cerrar un intento |
+| `mod_quiz_get_user_attempts` | Listar intentos de un usuario en un quiz |
+| `mod_quiz_get_attempt_review` | Revisar intento finalizado (respuestas correctas + nota) |
 | `mod_page_get_pages_by_courses` | Contenido de páginas |
 
 ### Foros
