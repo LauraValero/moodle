@@ -1,4 +1,4 @@
-# Accesos y configuración — Moodle Local (MIRA)
+# Accesos y configuración — Moodle Local
 
 ## URL de acceso
 
@@ -29,8 +29,8 @@ http://localhost:8080
 1. Iniciar sesión como **admin** en http://localhost:8080
 2. Ir a **Administración del sitio** → **Plugins** → **Webservices** → **Gestionar tokens**
    - Acceso directo: http://localhost:8080/admin/webservice/tokens.php
-3. En esa página aparece el token generado para el servicio **MIRA Setup**.
-4. Para crear uno nuevo: clic en **Agregar**, seleccionar usuario `admin` y servicio `MIRA Setup`, luego guardar.
+3. En esa página aparece el token generado para el servicio **Moodle Middleware Setup**.
+4. Para crear uno nuevo: clic en **Agregar**, seleccionar usuario `admin` y servicio `Moodle Middleware Setup`, luego guardar.
 
 ---
 
@@ -49,7 +49,7 @@ Si en algún momento los webservices se desactivan (por ejemplo, tras reinstalar
 5. Activar el protocolo **REST** → Guardar.
 6. Ir a **Gestionar servicios externos**:
    - http://localhost:8080/admin/webservice/service.php
-   - Verificar que el servicio **MIRA Setup** esté habilitado.
+   - Verificar que el servicio **Moodle Middleware Setup** esté habilitado.
 7. Ir a **Gestionar tokens** y crear o copiar el token:
    - http://localhost:8080/admin/webservice/tokens.php
 
@@ -72,7 +72,7 @@ docker exec moodle_app bash -c "php /tmp/setup_ws.php"
 
 ## Servicios web habilitados
 
-Servicio: **MIRA Setup** (shortname: `mira_setup`) — protocolo REST
+Servicio: **Moodle Middleware Setup** (shortname: `mira_setup`) — protocolo REST
 
 ### Sitio
 
@@ -173,4 +173,4 @@ print(r.json())
 
 ---
 
-*Generado: 2026-03-03 — Proyecto MIRA / Trabajo Integrador Univalle*
+*Generado: 2026-03-03*

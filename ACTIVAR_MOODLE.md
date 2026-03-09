@@ -181,7 +181,7 @@ docker cp seed_all.php moodle_app:/tmp/seed_all.php
 docker exec moodle_app bash -c "php /tmp/seed_all.php"
 ```
 
-> El token cambia cada vez que se ejecuta `setup_ws.php`. Copiarlo y actualizarlo en `mira/.env.test`.
+> El token cambia cada vez que se ejecuta `setup_ws.php`. Copiarlo y actualizarlo en `lv-llm/.env` (variable `MOODLE_TOKEN_LOCAL`).
 
 ---
 
@@ -201,4 +201,4 @@ docker compose down
 
 ---
 
-*Proyecto MIRA / Trabajo Integrador Univalle — 2026*
+*2026*

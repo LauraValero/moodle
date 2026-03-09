@@ -1,6 +1,6 @@
 # Moodle Local
 
-Instancia local de Moodle para desarrollo y pruebas del proyecto MIRA.
+Instancia local de Moodle para desarrollo y pruebas del middleware.
 
 ## Levantar
 
@@ -19,7 +19,7 @@ La primera vez tarda ~5 minutos mientras inicializa la base de datos.
 | Usuario  | admin                    |
 | Password | Admin1234!               |
 
-## Obtener token para mira
+## Obtener token
 
 1. Entrar como admin en http://localhost:8080
 2. Ir a: Administración del sitio → Plugins → Webservices → Gestionar tokens
@@ -27,19 +27,12 @@ La primera vez tarda ~5 minutos mientras inicializa la base de datos.
 4. Crear un token para el usuario admin y el servicio "REST"
 5. Copiar el token generado
 
-## Configurar mira para usar este Moodle
+## Configurar el middleware para usar este Moodle
 
-Editar `mira/.env.test`:
+Editar `lv-llm/.env`:
 
 ```
-MOODLE_URL=http://localhost:8080
-MOODLE_TOKEN=<token-generado-en-el-paso-anterior>
-```
-
-Luego ejecutar mira con:
-
-```bash
-ENVIRONMENT=testing python tu_script.py
+MOODLE_TOKEN_LOCAL=<token-generado-en-el-paso-anterior>
 ```
 
 ## Detener

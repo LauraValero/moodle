@@ -6,11 +6,11 @@ require('/bitnami/moodle/config.php');
 set_config('enablewebservices', 1);
 set_config('webserviceprotocols', 'rest');
 
-// Crear o recuperar el servicio REST para MIRA
+// Crear o recuperar el servicio REST
 $service = $DB->get_record('external_services', array('shortname' => 'mira_setup'));
 if (!$service) {
     $serviceobj = new stdClass();
-    $serviceobj->name = 'MIRA Setup';
+    $serviceobj->name = 'Moodle Middleware Setup';
     $serviceobj->shortname = 'mira_setup';
     $serviceobj->enabled = 1;
     $serviceobj->restrictedusers = 0;

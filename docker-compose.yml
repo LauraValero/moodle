@@ -32,7 +32,7 @@ services:
       MOODLE_USERNAME: admin
       MOODLE_PASSWORD: Admin1234!
       MOODLE_EMAIL: admin@local.dev
-      MOODLE_SITE_NAME: "MIRA - Moodle Local"
+      MOODLE_SITE_NAME: "Moodle Local"
       MOODLE_LANG: es
     volumes:
       - moodle_data:/bitnami/moodle
